@@ -36,14 +36,14 @@ class Audioscrobbler(APIHandler):
 		password = keys.get("password")
 		# either username and password
 		if user is not None and password is not None:
-			if password in database.allAPIkeys():
+			if self.check_api_key(password):
 				sessionkey = generate_key(self.mobile_sessions)
 				return 200,{"session":{"key":sessionkey}}
 			else:
 				raise InvalidAuthException()
 		# or username and token (deprecated by lastfm)
 		elif user is not None and token is not None:
-			for key in database.allAPIkeys():
+			for key in self.all_api_keys():
 				if md5(user + md5(key)) == token:
 					sessionkey = generate_key(self.mobile_sessions)
 					return 200,{"session":{"key":sessionkey}}

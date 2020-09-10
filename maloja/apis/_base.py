@@ -2,6 +2,7 @@ from nimrodel import EAPI as API
 from nimrodel import Multi
 
 from ._exceptions import *
+from ._auth import check_api_key, all_api_keys
 
 from copy import deepcopy
 from types import FunctionType
@@ -95,3 +96,8 @@ class APIHandler:
 			database.sync()
 		except:
 			raise ScrobblingException()
+
+	def check_api_key(self,key):
+		return check_api_key(key)
+	def all_api_keys(self):
+		return all_api_keys()

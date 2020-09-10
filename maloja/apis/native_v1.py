@@ -3,6 +3,7 @@ from doreah import settings
 from ..__pkginfo__ import version
 from ..malojauri import uri_to_internal
 from .. import utilities
+from .auth import api_key_correct
 
 from bottle import response
 
@@ -18,7 +19,7 @@ api.__apipath__ = "mlj_1"
 @api.get("test")
 def test_server(key=None):
 	response.set_header("Access-Control-Allow-Origin","*")
-	if key is not None and not (checkAPIkey(key)):
+	if key is not None and not (api_key_correct(key)):
 		response.status = 403
 		return {"error":"Wrong API key"}
 

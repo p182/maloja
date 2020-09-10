@@ -34,7 +34,7 @@ class Listenbrainz(APIHandler):
 		except:
 			raise BadAuthException()
 
-		if token not in database.allAPIkeys():
+		if not self.check_api_key(token):
 			raise InvalidAuthException()
 
 		try:
@@ -60,7 +60,7 @@ class Listenbrainz(APIHandler):
 			token = keys.get("token").strip()
 		except:
 			raise BadAuthException()
-		if token not in database.allAPIkeys():
+		if not self.check_api_key(token):
 			raise InvalidAuthException()
 		else:
 			return 200,{"code":200,"message":"Token valid.","valid":True,"user_name":"n/a"}
