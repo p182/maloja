@@ -22,7 +22,9 @@ requires = [
 	"lesscpy>=0.13",
 	"jinja2>2.11",
 	"lru-dict>=1.1.6",
-	"htmlmin>=0.1.12"
+	"htmlmin>=0.1.12",
+	"sortedcontainers>=2.2.2",
+	"psutil"
 ]
 resources = [
 	"web/*/*/*",

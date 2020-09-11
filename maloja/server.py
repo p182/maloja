@@ -1,14 +1,10 @@
-#!/usr/bin/env python
-import os
-from .globalconf import datadir, DATA_DIR
-
-
 # server stuff
 from bottle import Bottle, route, get, post, error, run, template, static_file, request, response, FormsDict, redirect, template, HTTPResponse, BaseRequest, abort
 import waitress
 
-# monkey patching
+# monkey patching and global configuration
 from . import monkey
+from .globalconf import datadir, DATA_DIR
 # rest of the project
 from . import database
 from . import malojatime
@@ -25,7 +21,6 @@ from doreah.logging import log
 from doreah.timing import Clock
 from doreah import auth
 # technical
-#from importlib.machinery import SourceFileLoader
 import importlib
 import _thread
 import sys

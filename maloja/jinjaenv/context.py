@@ -1,7 +1,7 @@
-from .. import database_packed
 from . import filters
 
-from .. import database, database_packed, malojatime, utilities, malojauri
+from .. import database, malojatime, utilities, malojauri
+from ..database import jinjalayer
 from doreah import settings
 from doreah.regular import repeatdaily
 
@@ -11,7 +11,7 @@ import math
 # templating
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-dbp = database_packed.DB()
+dbp = database.jinjalayer.DB()
 
 jinja_environment = Environment(
 	loader=PackageLoader('maloja', "web/jinja"),
@@ -25,7 +25,7 @@ def update_jinja_environment():
 
 	JINJA_CONTEXT = {
 		# maloja
-		"db": database,
+		"db": database.database,
 		"dbp":dbp,
 		"malojatime": malojatime,
 		"utilities": utilities,
