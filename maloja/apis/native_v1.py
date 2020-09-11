@@ -1,9 +1,10 @@
 from ..database import *
 from doreah import settings
+from doreah.auth import authenticated_api, authenticated_api_with_alternate
 from ..__pkginfo__ import version
 from ..malojauri import uri_to_internal
 from .. import utilities
-from .auth import api_key_correct
+from ._auth import api_key_correct
 
 from bottle import response
 

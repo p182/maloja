@@ -1,5 +1,6 @@
 from bottle import request
 from doreah import tsv
+from doreah.logging import log
 
 from ..globalconf import datadir
 
@@ -10,7 +11,7 @@ def load_api_keys():
 	global clients
 	tsv.create(datadir("clients/authenticated_machines.tsv"))
 	for key,desc in tsv.parse(datadir("clients/authenticated_machines.tsv"),"string","string"):
-        clients[key] = desc
+		clients[key] = desc
 	log("Authenticated Machines: " + ", ".join([clients[k] for k in clients]))
 
 # check validity of specific api key
@@ -38,3 +39,7 @@ def api_key_correct(request):
 	else: return False
 
 	return check_api_key(apikey)
+
+
+
+load_api_keys()
